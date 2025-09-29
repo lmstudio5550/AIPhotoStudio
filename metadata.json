@@ -1,5 +1,0 @@
-{
-  "name": "AI Photo Studio",
-  "description": "An AI-powered photo editing tool to remove backgrounds and restore old images using the Gemini Nano Banana model. Upload your photo, choose an editing feature, and let the AI enhance your image.",
-  "requestFramePermissions": []
-}
