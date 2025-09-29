@@ -1,21 +1,11 @@
 import { GoogleGenAI, Modality } from "@google/genai";
 
-const API_KEY = process.env.API_KEY;
-
-if (!API_KEY) {
-  // In a real app, you might not want to throw an error that crashes the whole app,
-  // but for this environment, it's a clear indicator of a missing key.
-  // A UI message would be better for production.
-  console.error("API_KEY environment variable is not set");
-}
-
-const ai = new GoogleGenAI({ apiKey: API_KEY });
+// Fix: Per Gemini API guidelines, the API key must be obtained from `process.env.API_KEY`.
+// We assume it is pre-configured and accessible, so redundant checks are removed.
+// A type assertion is used to satisfy TypeScript's type checker.
+const ai = new GoogleGenAI({ apiKey: process.env.API_KEY as string });
 
 export const editImage = async (base64ImageData: string, mimeType: string, prompt: string): Promise<string> => {
-  if (!API_KEY) {
-    throw new Error("API Key is not configured. Please set the API_KEY environment variable.");
-  }
-
   try {
     const response = await ai.models.generateContent({
       model: 'gemini-2.5-flash-image-preview',
