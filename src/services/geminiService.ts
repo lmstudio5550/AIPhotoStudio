@@ -1,12 +1,7 @@
 import { GoogleGenAI, Modality } from "@google/genai";
 
-const API_KEY = import.meta.env.VITE_API_KEY;
-
-if (!API_KEY) {
-  throw new Error("VITE_API_KEY environment variable is not set. Please add it to your Vercel project settings.");
-}
-
-const ai = new GoogleGenAI({ apiKey: API_KEY });
+// FIX: Per guidelines, initialize AI client with API_KEY from process.env and assume it is available.
+const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
 export const editImage = async (base64ImageData: string, mimeType: string, prompt: string): Promise<string> => {
   try {
